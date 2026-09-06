@@ -1,4 +1,10 @@
+import { Metadata } from 'next';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: '404 - Page not found | NoteHub',
+  description: 'Oops! Page not found...',
+};
 
 const NotFound = () => {
   return (
