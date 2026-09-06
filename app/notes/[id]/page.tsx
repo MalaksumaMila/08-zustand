@@ -23,7 +23,7 @@ return {
   openGraph: {  
         title: `Note Details: ${note.title}`,
   description: `View details for note ${note.content}`,
-    url: `/notes/${id}`,
+    url: `https://notehub.com/notes/${id}`,
   images: [
     {
          url: 'https://ac.goit.global/fullstack/react/notehub-og-meta.jpg',
