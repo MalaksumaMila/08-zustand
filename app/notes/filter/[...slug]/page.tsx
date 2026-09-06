@@ -13,7 +13,7 @@ interface SlugPageProps {
 }
 
 
-export async function generateMetedata ({params,}:SlugPageProps): Promise <Metadata> {
+export async function generateMetadata ({params,}:SlugPageProps): Promise <Metadata> {
    const { slug } = await params; 
     const tag = slug[0];
 
@@ -22,6 +22,8 @@ export async function generateMetedata ({params,}:SlugPageProps): Promise <Metad
   description: `View all notes with the ${tag} tag`,
   
   openGraph: {  
+    title: `Notes by Tag: ${tag}`,
+  description: `View all notes with the ${tag} tag`,
     url: `/notes/filter/${tag}`,
   images: [
     {

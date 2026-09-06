@@ -13,18 +13,16 @@ interface NoteDetailsPageProps {
   params: Promise<{ id: string }>;
 }
 
-export  async function generateMetedata({params,}:NoteDetailsPageProps): Promise<Metadata> {
+export  async function generateMetadata({params,}:NoteDetailsPageProps): Promise<Metadata> {
     const { id } = await params;
-     const queryClient = new QueryClient();
-    await queryClient.prefetchQuery({
-    queryKey: ['note', id],
-    queryFn: () => fetchNoteById(id),
-  });
+     const note = await fetchNoteById(id);
 return {
-      title: `Note Details: ${id}`,
-  description: `View details for note ${id}`,
+      title: `Note Details: ${note.title}`,
+  description: `View details for note ${note.content}`,
   
   openGraph: {  
+        title: `Note Details: ${note.title}`,
+  description: `View details for note ${note.content}`,
     url: `/notes/${id}`,
   images: [
     {
