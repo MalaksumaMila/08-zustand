@@ -7,11 +7,9 @@ import { useDebouncedCallback } from 'use-debounce';
 import { fetchNotes } from '@/lib/api';
 
 import css from './NotesPage.module.css';
-
+import Link from 'next/link';
 import Pagination from '@/components/Pagination/Pagination';
 import NoteList from '@/components/NoteList/NoteList';
-import Modal from '@/components/Modal/Modal';
-import NoteForm from '@/components/NoteForm/NoteForm';
 import SearchBox from '@/components/SearchBox/SearchBox';
 import Loader from '@/app/loading';
 
@@ -36,11 +34,6 @@ export default function NotesClient({ tag }: NotesClientProps) {
 
   const pageCount = data?.totalPages ?? 0;
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
-
   return (
     <div className={css.app}>
       <header className={css.toolbar}>
@@ -50,9 +43,9 @@ export default function NotesClient({ tag }: NotesClientProps) {
           <Pagination page={page} setPage={setPage} pageCount={pageCount} />
         )}
 
-        <button onClick={openModal} className={css.button}>
+        <Link href='https://notehub.com/notes/action/create' className={css.button}>
           Create note +
-        </button>
+        </Link>
       </header>
       {isLoading && <Loader />}
 
@@ -60,11 +53,6 @@ export default function NotesClient({ tag }: NotesClientProps) {
         <NoteList notes={data.notes} />
       )}
 
-      {isModalOpen && (
-        <Modal closeModal={closeModal}>
-          <NoteForm closeModal={closeModal} />
-        </Modal>
-      )}
     </div>
   );
 }
