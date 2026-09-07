@@ -17,9 +17,27 @@ export default function NoteForm() {
     },
   });
 
+ const handleSubmit = (formData: FormData) => {
+  const title = formData.get("title")
+   const content = formData.get("content")
+    const tag = formData.get("tag")
+
+  if (typeof title !== "string" || typeof content!=="string"  || typeof tag !== "string") {
+    return
+  }
+  
+  const newNote: CreateNoteRequest  = {
+    title,
+  content,
+  tag,
+}
+mutation.mutate (newNote) 
+  }
+  
+
   return (
   
-      <form className={css.form}>
+      <form className={css.form} action={handleSubmit}>
         <div className={css.formGroup}>
           <label htmlFor={`${fieldId}-title`}>Title</label>
           <input
@@ -71,4 +89,4 @@ export default function NoteForm() {
       </form>
    
   );
-}
+};
