@@ -43,7 +43,7 @@ export default function NotesClient({ tag }: NotesClientProps) {
           <Pagination page={page} setPage={setPage} pageCount={pageCount} />
         )}
 
-        <Link href='https://notehub.com/notes/action/create' className={css.button}>
+        <Link href='/notes/action/create' className={css.button}>
           Create note +
         </Link>
       </header>
