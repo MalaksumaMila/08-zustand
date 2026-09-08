@@ -24,7 +24,7 @@ export async function generateMetadata ({params,}:SlugPageProps): Promise <Metad
   openGraph: {  
     title: `Notes by Tag: ${tag}`,
   description: `View all notes with the ${tag} tag`,
-    url: `https://notehub.com/notes/filter/${tag}`,
+    url: `https://08-zustand-ebon-two.vercel.app/notes/filter/${tag}`,
   images: [
     {
          url: 'https://ac.goit.global/fullstack/react/notehub-og-meta.jpg',
