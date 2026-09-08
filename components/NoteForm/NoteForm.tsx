@@ -34,6 +34,11 @@ const clearDraft = useNoteStore(state => state.clearDraft);
    
 
  const handleSubmit = (formData: FormData) => {
+  if (mutation.isPending) {
+    return;
+  }
+
+  
   const title = formData.get("title")
    const content = formData.get("content")
     const tag = formData.get("tag")
@@ -53,10 +58,11 @@ mutation.mutate (newNote)
 
   return (
   
-      <form className={css.form} >
+      <form className={css.form}
+       action={handleSubmit} >
         <div className={css.formGroup}>
           <label htmlFor={`${fieldId}-title`}>Title</label>
-          <input defaultValue={draft.title}
+          <input value={draft.title}
          onChange= {(e) => {
           setDraft({ ...draft, title : e.target.value });
         }}
@@ -69,7 +75,7 @@ mutation.mutate (newNote)
 
         <div className={css.formGroup}>
           <label htmlFor={`${fieldId}-content`}>Content</label>
-          <textarea   defaultValue={draft.content} 
+          <textarea   value={draft.content} 
           onChange= {(e) => {
           setDraft({ ...draft, content : e.target.value });
         }}        
@@ -83,7 +89,7 @@ mutation.mutate (newNote)
 
         <div className={css.formGroup}>
           <label htmlFor={`${fieldId}-tag`}>Tag</label>
-          <select defaultValue={draft.tag} 
+          <select value={draft.tag} 
         
          onChange= {(e) => {
           setDraft({ ...draft, tag : e.target.value });
@@ -109,8 +115,8 @@ mutation.mutate (newNote)
             Cancel
           </button>
           <button type="submit" 
-          formAction={handleSubmit}
-
+         
+disabled={mutation.isPending}
           className={css.submitButton}>
             Create note
           </button>
